@@ -1,6 +1,6 @@
 function ANS = drawANS()
 %% deklaracja zmiennych
-fs = 16000; %czestotliwość probkowani
+fs = 8000; %czestotliwość probkowani
 len_letter = 3; len_break =0.2; %szerokość litery, szerokość przerwy
 Nx = len_letter*fs; %liczba próbek dla jednej litery
 dt = 1/fs; % okres probkowania
@@ -15,6 +15,6 @@ ANS =[A time_break N time_break S];
 %% wyświetlanie i odsłuchanie sygnału
 spectrogram(ANS,256,256-64,512,fs);
 if(fs>=8000)
-    sound(ANS,fs)
+    %sound(ANS,fs)
 end
 end

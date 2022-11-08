@@ -10,8 +10,8 @@ A = S'; % macierz analizy: transpozycja i sprzezenie S
 %x2 = 20*S(:,10); % sygnal #2
 %x3 = 30*sqrt(2/N)*cos(pi/N*(n' +1/2)*(10.5+1/2) ); % sygnal #3
 k_=0;
-while k_<=10
-    x4 = 30*sqrt(2/N)*cos(pi/N*(n'+N/4+1/2)*(10 +1/2) ); % sygnal #4
+while k_<=11
+    x4 = 30*sqrt(2/N)*cos(pi/N*(n'+N/4+k_)*(10 +1/2) ); % sygnal #4
     x = x4; % + x2; % wybor x1, x2, x3, x4, x1+x2, x1+x3, x1+x4
     %figure; plot(x,'bo-'); title('x(n)'); grid; % rysunek sygnalu wejsciowego
     c = A*x; % analiza sygnalu: wyznaczenie wspolczynnikow transformacji

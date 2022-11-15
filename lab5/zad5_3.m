@@ -1,0 +1,28 @@
+clc; clear;
+N=8;
+x = 1:N;
+x_fft=fft(x);
+vect = exp(-j * 2*pi/N*(0:N-1));
+vect1 = exp(-j * 2*pi/(N/2)*(0:(N/2)-1));
+k = (0:N-1); n=(0:N-1);
+A = exp(-1j*2*pi/N*k'*n);
+xe = x(1:2:end);
+    xee = xe(1:2:length(xe));
+    xeo = xe(2:2:length(xe));
+xo = x(2:2:end);
+    xoe = xo(1:2:length(xo));
+    xoo = xo(2:2:length(xo));
+Ae = A(1:N,1:2:N);
+    Aee = Ae(1:N/2,1:2:N/2);
+    Aeo = Ae(1:N/2,2:2:N/2) ./ vect1.';
+Ao = A(1:N,2:2:N) ./ vect.';
+    Aoe = Ao(1:N/2,1:2:N/2);
+    Aoo =  Ao(1:N/2,2:2:N/2)./vect1.';
+Xee = xee * Aee(1:2,:);
+Xeo = xeo * Aeo(1:2,:);
+Xe = [Xee Xee] + vect1 .* [Xeo Xeo];
+Xoe = xoe * Aoe(1:2,:);
+Xoo = xoo * Aoo(1:2,:);
+Xo = [Xoe Xoe] + vect1 .* [Xoo Xoo];
+X=[Xe Xe] + vect .* [Xo Xo];
+max(abs(x_fft - X))

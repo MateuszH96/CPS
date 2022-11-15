@@ -2,12 +2,11 @@ import numpy as np
 import math as m
 from scipy.fft import fft
 def zad5_7(input):
-    p = 3
-    N = pow(2, p)  # liczba próbek
+    signal = input # sygnał
+    N = len(signal)  # liczba próbek
     Nbits = int(m.log2(N))  # liczba bitów
-    signal = [1,1,1,4,5,6,70,0]#[i for i in range(1, N+1)]  # sygnał
     x = [i for i in range(N)]  # indeksy
-    formatString = '{:0'+str(p)+'b}'  # string do formatu postaci bitowej
+    formatString = '{:0'+str(Nbits)+'b}'  # string do formatu postaci bitowej
 
     xbin1 = [formatString.format(x) for x in range(N)] # postać bitowa na właściwej ilości bitów
     reverseStrBin = [i[::-1] for i in xbin1]  # odwracanie liczby bitowej
@@ -40,7 +39,7 @@ def zad5_7(input):
                 y_vect[tmp3[i]-1] = result[i];
 
 
-    return(max(abs(y_vect-fft(signal))))
+    return max(abs(y_vect-fft(signal)))
 
 
 def getDataFromFile(input):
@@ -51,7 +50,7 @@ def getDataFromFile(input):
         tmp=line.split(',');
         data.append([int(i) for i in tmp])
         line=a.readline()
-    return(data)
+    return data
 
 data = getDataFromFile('dane.txt')
 error=[]
@@ -63,3 +62,4 @@ txt=str(error[0])
 for i in range(1,len(error)):
     txt+=','+str(error[i])
 file.write(txt)
+
